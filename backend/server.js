@@ -6,12 +6,29 @@ import { HfInference } from "@huggingface/inference";
 dotenv.config();
 
 const app = express();
-app.use(cors());
 
-// // Production version:
-// app.use(cors({
-//   origin: "https://yourdomain.com"  // Only allow your frontend
-// }));
+// UPDATED CORS CONFIGURATION
+const allowedOrigins = [
+  "http://localhost:5173", // Local development
+  "http://localhost:4173", // Vite preview
+  process.env.FRONTEND_URL, // Railway frontend URL (we'll set this)
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 
@@ -92,7 +109,7 @@ app.get("/api/health", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`✅ AI backend running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`✅ AI backend running on port ${PORT}`);
   console.log(`✅ Using model: meta-llama/Meta-Llama-3-8B-Instruct`);
 });
