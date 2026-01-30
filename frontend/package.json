@@ -1,13 +1,13 @@
 {
-  "name": "recipe-finder",
+  "name": "recipe-finder-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview --port $PORT --host 0.0.0.0"
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.10",
@@ -28,5 +28,8 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "vite": "^7.2.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
