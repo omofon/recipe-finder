@@ -1,6 +1,6 @@
 # 🍳 Recipe Finder - AI-Powered Recipe Generator
 
-A full-stack web application that generates creative recipes based on ingredients you have on hand. Built with React, Node.js, and powered by HuggingFace model.
+A full-stack web application that generates creative recipes based on ingredients you have on hand. Built with React, Node.js, and powered by HuggingFace's Llama 3 AI model.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
